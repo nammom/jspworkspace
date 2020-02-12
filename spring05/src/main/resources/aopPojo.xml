@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<!-- 공통기능을 제공할 클래스 Bean목록으로 등록 -->
+	<bean id="exeTimeAspect" class="aspect.ExeTimeAspect"></bean>
+	
+	<!-- Aspect설정 : Advice를 Pointcut에 적용할 것인지 설정-->
+	
+	<aop:config>
+		<aop:aspect id = "measureAspect" ref = "exeTimeAspect">
+			<aop:pointcut id = "publicMethod"
+				expression = "execution(public * chap06..*(..))"/>
+			<aop:around pointcut-ref = "publicMethod" method = "measure" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!--  exeTimeAspect를 참조(공총기능 제공 클래스빈) 
+		pointcut : 메서드를 실행하는 expression시점 정의 (execution(public * chap06..*(..)) :하위의 모든 메서드들이 호출될때)
+		around=>  pointcut(시점)을 참조해서 : method(mesure)를 호출함 
+		==>pointcut(시점)에 자동으로 mesure메서드가 호출됨 
+			measure메서드 내에   joinPoint.proceed(); 라고 쓰면 거기서 공통 메서드가 호출됨
+		-->
+	<bean id = "impCal" class = "chap06.ImplCalculator"></bean>
+	
+	<bean id = "recCal" class = "chap06.RecCalculator"></bean>
+	
+</beans>
