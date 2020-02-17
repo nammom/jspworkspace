@@ -34,7 +34,7 @@
 	<tx:annotation-driven transaction-manager = "transactionManager"/>
 	
 	
-		<bean id="memberRegSvc" class="spring.MemberRegisterService">
+	<bean id="memberRegSvc" class="spring.MemberRegisterService">
 		<constructor-arg ref="memberDao" />
 	</bean>
 	
