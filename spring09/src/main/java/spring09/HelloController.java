@@ -13,7 +13,8 @@ public class HelloController {
 	@RequestMapping("/hello")
 	public String hello(
 			Model model,	//자동으로 스프링이 생성해서 모델 넣어줌(모델 : 서버쪽에서 처리한 결과를 담아두는 역할)
-			@RequestParam(value= "name", required = false)String name) {	//요청받은 request객체안에 name이라는 파라미터가 있으면  String name에 넣어줌
+			@RequestParam(value= "name", required = false)String name) {	
+						//요청받은 request객체안에 name이라는 파라미터가 있으면  String name에 넣어줌
 						System.out.println("hello요청");
 						model.addAttribute("greeting", "안녕하세요" + name);
 						//이전에 session이나 request에 setAttribute했던것과 같음

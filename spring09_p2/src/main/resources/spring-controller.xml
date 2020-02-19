@@ -9,6 +9,7 @@
 			http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<mvc:view-controller path="/main" view-name="main"/>
+	<!--  클래스 정의안하고 이태그를 사용하여서 /main경로로 요청이 오면 main.jsp로 보낸다-->
 	
 	<bean class="controller.RegisterController">
 		<property name = "memberRegisterService" ref= "memberRegSvc"/>

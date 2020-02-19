@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:annotation-driven />
+<!-- 스프링이 동작할때 어노테이션 읽게해줌 -->
+	<mvc:default-servlet-handler />
+<!-- 최상위 요청을 받아주는 애 -->
+
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/view/" />
+	</mvc:view-resolvers>
+<!--  뷰를 해석해주는애  경로에 /WEB-INF/view/를 자동적으로 붙여줌
+ 		controller 에서 return "hello" => /spring09/WEB-INF/view/hello.jsp-->
+ 		
+ 	<bean id = "messageSource"
+ 		class = "org.springframework.context.support.ResourceBundleMessageSource">
+ 		<property name = "basenames">
+ 			<list>
+ 				<value>message.label</value>
+ 			</list>
+ 		</property>
+ 		<property name = "defaultEncoding" value = "UTF-8"/>	
+ 	</bean>
+ 	
+</beans>
